@@ -67,3 +67,11 @@ logs/
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Ignore extracted/review snapshots
+backend-review/
+backend-review-extracted/
+frontend-review-extracted/
+
+# Local envs (already present above but ensure local .env remains ignored)
+.env
