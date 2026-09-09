@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
 function App() {
   const [query, setQuery] = useState("");
   const [result, setResult] = useState(null);
@@ -57,15 +60,15 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/smart-search",
-        {
+        `${API_URL}/smart-search`,
+         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ query: trimmedQuery }),
-        }
-      );
+      }
+    );
 
       if (!response.ok) {
         throw new Error(`Search failed with status ${response.status}`);
@@ -116,14 +119,6 @@ function App() {
                 <strong>
                   ${Number(product.price).toFixed(2)}
                 </strong>
-
-                <button
-                  type="button"
-                  className="add-button"
-                  aria-label={`Add ${product.name} to cart`}
-                >
-                  Add
-                </button>
               </div>
             </div>
           </article>
